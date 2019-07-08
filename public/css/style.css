@@ -1,0 +1,280 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Oxygen", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.7;
+	color: #777;
+	padding: 30px;
+}
+
+.row {
+	margin: 0;
+}
+
+.header {
+	height: 65vh;
+	background-image: linear-gradient(
+		to right bottom,
+		rgba(36, 32, 56, 0.8), 
+		rgba(114, 90, 193, 0.8)), 
+	url(../images/14_los_angeles.jpg);
+	background-size: cover;
+	background-position: top;
+	clip-path: polygon(0 0, 100% 0, 100% 55vh, 0 100%);
+	position: relative;
+}
+
+.logo-box {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+}
+
+.logo {
+	height: 110px;
+}
+
+.text-box {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	/*because the btn inline block is treated like text*/
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.heading-primary {
+	color: #fff;
+	text-transform: uppercase;
+	backface-visibility: hidden;
+	margin-bottom: 60px;
+}
+
+.heading-primary-main {
+	display: block;
+	font-size: 60px;
+	font-weight: 400;
+	letter-spacing: 35px;
+	animation-name: moveInLeft;
+	animation-duration: 2s;
+	animation-timing-function: ease-out;
+	/*animation-delay: 3s;*/
+	/*animation-iteration-count: 3;*/
+}
+
+.heading-primary-sub {
+	display: block;
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 21px;
+	animation: moveInRight 2s ease-out;
+}
+
+@keyframes moveInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-100px);
+	}
+
+	80% {
+		transform: translateX(10px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+
+	80% {
+		transform: translateX(-10px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInBottom {
+	0% {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+.btn-white:link,
+.btn-white:visited {
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 15px 40px;
+	display: inline-block;
+	border-radius: 100px;
+	/*all properties enabled to be animated*/
+	/*transition has to be in the inital state*/
+	transition: all .2s;
+	/*so that after has a reference*/
+	position: relative;
+	/*so that not all buttons are animated*/
+	/*animation: moveInBottom 2s ease-out;*/
+}
+
+.btn-white:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0,0,0,.4);
+}
+
+.btn-white:active {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.btn-white {
+	background-color: #fff;
+	color: #777;
+}
+
+.btn-white::after {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	/*initial state for the animation*/
+	transition: all .4s;
+}
+
+.btn-white::after {
+	background-color: #fff;
+}
+
+.btn-white:hover::after {
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+}
+
+.btn-animated {
+	animation: moveInBottom 1s ease-out .75s;
+	/*atuo applies the 0% styles before the animation starts*/
+	animation-fill-mode: backwards;
+}
+
+.storyImg {
+	height: 200px;
+	width: 200px;
+	padding: 0;
+	/*border: 1px solid #060508;*/
+	box-shadow: 0 5px 10px -2px rgba(0,0,0,.2);
+}
+
+.headlineLink:link,
+.headlineLink:visited {
+	text-decoration: none;
+	font-size: 20px;
+	text-shadow: 0.5px 0.5px 0.5px;
+	color: #fff;
+}
+
+.headlineLink:hover {
+	color: #060508;
+}
+
+.btn {
+	cursor: pointer;
+}
+
+.card-header {
+	background-image: linear-gradient(
+		to right bottom,
+		rgba(36, 32, 56, 0.8), 
+		rgba(114, 90, 193, 0.8)), 
+	url(../images/la.jpeg);
+}
+
+#headline {
+	background-image: linear-gradient(
+		to right bottom,
+		rgba(36, 32, 56, 0.8), 
+		rgba(114, 90, 193, 0.8)), 
+	url(../images/la.jpeg);
+	background-size: cover;
+}
+
+#addnote {
+	display: none;
+	justify-content: center;
+	align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 4;
+}
+
+#note {
+	padding: 0 20px 20px 20px;
+}
+
+#note-displayer {
+	width: 700px;
+	background-color: #fff;
+	z-index: 5;
+}
+
+#note-displayer h3 {
+	margin: 0;
+	font-size: 20px;
+	text-shadow: 0.5px 0.5px 0.5px;
+	color: #fff;
+}
+
+#note-displayer label {
+	color: #aaa;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#note-displayer button {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#note-displayer button:hover {
+	box-shadow: 0 0 10px #fff;
+}
+
+#note-title {
+	width: 100%;
+	margin: 0 0 10px 0;
+	padding: 5px;
+	font-size: 15px;
+}
+
+#note-body {
+	width: 100%;
+	padding: 5px;
+	font-size: 15px;
+}

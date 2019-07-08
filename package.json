@@ -1,0 +1,30 @@
+{
+  "name": "mongo-news-scrapper",
+  "version": "1.0.0",
+  "description": "Mongo scrapper",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dtirado07/Mongo-news-scrapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dtirado07/Mongo-news-scrapper/issues"
+  },
+  "homepage": "https://github.com/dtirado07/Mongo-news-scrapper#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "controllers": "0.0.2",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.3",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0"
+  }
+}
