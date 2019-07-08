@@ -32,9 +32,9 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
-//mongoose.connect("mongodb://srvin:Taanme1983@ds131763.mlab.com:31763/heroku_t339k0p2", { useNewUrlParser: true });
+mongoose.connect("mongodb://dtirado:VLqEyhxihk3J27H@ds249017.mlab.com:49017/heroku_fx1602gw", { useNewUrlParser: true });
+
 // Routes
 
 // A GET route for scraping the echoJS website
@@ -43,12 +43,12 @@ app.get("/scrape", function (req, res) {
     axios.get("https://www.steelers.com/news").then(function (response) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(response.data);
-        var results = [];
 
         // With cheerio, find each p-tag with the "title" class
         // (i: iterator. element: the current element)
         $("div.d3-l-col__col-4").each(function (i, element) {
 
+            var results = [];
             // Save the text of the element in a "title" variable
             var title = $(element).find("h3.d3-o-media-object__title").text();
 
@@ -61,23 +61,23 @@ app.get("/scrape", function (req, res) {
                 title: title,
                 link: link
             });
+            // Using our Article model, create a new entry
+            // This effectively passes the result object to the entry (and the title and link)
+            // Create a new Article using the `result` object built from scraping
+            db.Article.create(results)
+                .then(function (dbArticle) {
+                    // View the added result in the console
+                    console.log(dbArticle);
+                })
+                .catch(function (err) {
+                    // If an error occurred, log it
+                    console.log(err);
+                });
         });
-        // Using our Article model, create a new entry
-        // This effectively passes the result object to the entry (and the title and link)
-        // Create a new Article using the `result` object built from scraping
-        db.Article.create(result)
-            .then(function (dbArticle) {
-                // View the added result in the console
-                console.log(dbArticle);
-            })
-            .catch(function (err) {
-                // If an error occurred, log it
-                console.log(err);
-            });
-    });
 
-    // Send a message to the client
-    res.send("Scrape Complete");
+        // Send a message to the client
+        res.send("Scrape Complete");
+    });
 });
 
 
